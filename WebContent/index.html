@@ -34,7 +34,7 @@
     }
 </script>
 
-<body>
+<body onload="checkCookieSetting()">
 <header class="header">
     <div class="header--left-container">
         <img class="header--logo" src="images/m-logo.svg" alt="">
@@ -102,6 +102,13 @@
         </div>
         <button class="button--submit" onclick="callRESTAPI()" value="Submit">Find it</button>
     </nav>
+    <div id="cookie-banner">
+        <p>This site uses cookies to enable certain features.</p>
+        <div>
+            <button onclick="updateCookieSetting(true)">Accept Cookies</button>
+            <button onclick="updateCookieSetting(false)">Hide</button>
+        </div>
+    </div>
     <div class="details-container js-container">
         <h1 class="h1 h1__city js-city"></h1>
         <h5 class="h5 h5__country js-country"></h5>
@@ -166,6 +173,8 @@
         <img class="header--weather--logo" width="120" height="33" src="https://icons.wxug.com/logos/PNG/wundergroundLogo_4c_rev_horz.png"></p>
 </footer>
 
-<script src="main.js"></script></body>
+<script src="main.js"></script>
+<script src="cookies.js"></script>
 
+</body>
 </html>

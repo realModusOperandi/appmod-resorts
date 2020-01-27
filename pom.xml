@@ -12,6 +12,10 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <version.liberty-maven-plugin>3.1</version.liberty-maven-plugin>
+    <liberty.var.default.http.port>9080</liberty.var.default.http.port>
+    <liberty.var.default.https.port>9443</liberty.var.default.https.port>
+    <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
 
     <app.name>modresorts</app.name>
     <testServerHttpPort>9080</testServerHttpPort>
@@ -39,6 +43,13 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+      <version>2.1.1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -94,6 +105,11 @@
           <warSourceDirectory>WebContent</warSourceDirectory>
           <outputDirectory>data/examples</outputDirectory>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>io.openliberty.tools</groupId>
+        <artifactId>liberty-maven-plugin</artifactId>
+        <version>${version.liberty-maven-plugin}</version>
       </plugin>
     </plugins>
 

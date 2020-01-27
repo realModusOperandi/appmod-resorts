@@ -28,6 +28,30 @@ body {
 .bold {
   font-weight: 500;
 }
+#cookie-banner {
+  position: fixed;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  top: 140px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: #000;
+  color: #fff;
+  padding: 0 30px;
+  height: 0;
+  transition: height .5s, opacity .25s;
+  opacity: 0;
+  overflow: hidden;
+}
+#cookie-banner.cookie-banner--visible {
+  display: flex;
+}
+#cookie-banner.cookie-banner--fullsize {
+  height: 50px;
+  opacity: 100%;
+}
 
 .h1 {
   font-size: 33px;
