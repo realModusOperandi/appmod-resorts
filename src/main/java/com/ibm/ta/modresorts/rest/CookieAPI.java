@@ -19,7 +19,6 @@ public class CookieAPI {
 	public static final String COOKIES_ACCEPTED_KEY = "cookiesAccepted";
 	public static final String COOKIES_ACCEPTED_VALUE_FALSE = "false";
 	public static final String SUCCESS = "Success";
-	public static final String LEFT = "➡️";
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

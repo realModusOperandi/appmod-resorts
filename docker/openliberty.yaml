@@ -1,0 +1,12 @@
+# Assumes the OpenLiberty operator has been installed in your cluster
+apiVersion: openliberty.io/v1beta1
+kind: OpenLibertyApplication
+metadata:
+  name: resorts
+spec:
+  applicationImage: lwestby/infiniresorts:1.3
+  replicas: 2
+  service:
+    type: ClusterIP
+    port: 9080
+  expose: true
