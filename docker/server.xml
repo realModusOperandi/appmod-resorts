@@ -11,7 +11,7 @@
         <properties infinispan.client.hotrod.server_list="infinispan-server:11222"/>
         <properties infinispan.client.hotrod.marshaller="org.infinispan.commons.marshall.JavaSerializationMarshaller"/>
         <properties infinispan.client.hotrod.auth_username="developer"/>
-        <properties infinispan.client.hotrod.auth_password="kFyuG9SfIHqJ5BU6"/>
+        <properties infinispan.client.hotrod.auth_password="wXQhTvK48VLX3Lgs"/>
         <properties infinispan.client.hotrod.auth_realm="default"/>
         <properties infinispan.client.hotrod.auth_server_name="infinispan"/>
         <properties infinispan.client.hotrod.sasl_mechanism="DIGEST-MD5"/>

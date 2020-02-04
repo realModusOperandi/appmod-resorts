@@ -1,8 +1,4 @@
-FROM openliberty/open-liberty:full-java13-openj9-ubi
-
-COPY server.xml /config/
-COPY jvm.options /config/jvm.options
-COPY modresorts.war /config/dropins
+FROM openliberty/open-liberty:full-java13-openj9-ubi as builder
 
 # Install Infinispan jars
 USER root
@@ -16,12 +12,13 @@ RUN dnf install -y maven \
     && rm -f /opt/ol/wlp/usr/shared/resources/infinispan/reactive-streams-*.jar \
     && rm -f /opt/ol/wlp/usr/shared/resources/infinispan/rxjava-*.jar \
     && rm -rf ~/.m2 \
-    && chown 1001:0 /config/server.xml \
-    && chmod g+rw /config/server.xml \
-    && chown 1001:0 /config/jvm.options \
-    && chmod g+rw /config/jvm.options \
-    && chown -R 1001:0 /config/dropins \
-    && chmod -R g+rw /config/dropins \
     && chown -R 1001:0 /opt/ol/wlp/usr/shared/resources/infinispan \
     && chmod -R g+rw /opt/ol/wlp/usr/shared/resources/infinispan
 USER 1001
+
+FROM openliberty/open-liberty:full-java13-openj9-ubi
+COPY --from=builder /opt/ol/wlp/usr/shared/resources/infinispan /opt/ol/wlp/usr/shared/resources/infinispan
+COPY server.xml /config/
+COPY jvm.options /config/jvm.options
+COPY modresorts.war /config/dropins
+RUN /opt/ol/helpers/build/configure.sh
