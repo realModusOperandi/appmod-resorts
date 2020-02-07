@@ -1,6 +1,6 @@
 # Deploying to OpenShift with Session Persistence
 ## Configuring the Cluster
-> Note: all steps assume you are logged in to the cluster on the command line.
+> Note: all steps assume you are logged in to the cluster on the command line. These steps also require some permissions that aren't normally given by default, see the appendix
 ### Install the OpenLiberty operator
 *Reference: https://github.com/OpenLiberty/open-liberty-operator/tree/master/deploy/releases/0.3.0#open-liberty-operator-v030*
 
@@ -65,6 +65,12 @@ spec:
 ```
 
 Update the `name` element to the name you want to use for the server. This will become the service name, so it should be unique. Leave `replicas` at 1 unless you know you have enough `PersistentVolume`s to handle each replica.
+
+Apply the file to create the server:
+
+```shell script
+oc apply -f infinispan.yaml
+```
 
 When the server pod's status is Ready and the line `Infinispan Server 10.1.1.Final started in 21301ms` appears in the logs, the server is ready.
 
@@ -180,3 +186,10 @@ oc apply -f openliberty.yaml
 ```
 
 Watch the deployment in the web console. When the pods become ready, you can access the application via the Route that was automatically created. Be sure to add the context root of `resorts` to the end of the URL.
+
+## Appendix A: Required Role Bindings
+The default user permissions on OpenShift are extremely restrictive. The following role bindings will likely need to be added to the user doing the deployment. Note that the Infinispan-operator and open-liberty-operator-ol-liberty-ns roles won't exist until the corresponding operators are installed in the project/namespace the user is working in:
+* `admin` role for the namespace the user is working in
+* `view` role for all namespaces where resources needed in this tutorial live, including the openshift-image-registry
+* `infinispan-operator` role for the namespace the user is working in (requires Infinispan operator be deployed in that namespace)
+* `open-liberty-operator-ol-liberty-ns` role for the namespace the user is working in (requires the Open Liberty operator be deployed to watch the namespace the user is working in)
