@@ -1,0 +1,15 @@
+# Assumes the OpenLiberty operator has been installed in your cluster
+apiVersion: openliberty.io/v1beta1
+kind: OpenLibertyApplication
+metadata:
+  name: infiniresorts-hz
+spec:
+  applicationImage: image-registry.openshift-image-registry.svc:5000/resorts/infiniresorts-hz:1.0
+  replicas: 2
+  service:
+    type: ClusterIP
+    port: 9080
+  expose: true
+  env:
+    - name: WLP_LOGGING_CONSOLE_FORMAT
+      value: "basic"

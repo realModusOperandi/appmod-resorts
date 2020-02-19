@@ -1,7 +1,0 @@
-# Assumes the Infinispan operator has been installed in your cluster
-apiVersion: infinispan.org/v1
-kind: Infinispan
-metadata:
-  name: infinispan-server
-spec:
-  replicas: 1
