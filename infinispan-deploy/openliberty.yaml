@@ -2,7 +2,7 @@
 apiVersion: openliberty.io/v1beta1
 kind: OpenLibertyApplication
 metadata:
-  name: resorts
+  name: modresorts
 spec:
   applicationImage: image-registry.openshift-image-registry.svc:5000/resorts/infiniresorts:1.6
   replicas: 2
@@ -10,3 +10,14 @@ spec:
     type: ClusterIP
     port: 9080
   expose: true
+  volumeMounts:
+    - mountPath: /platform/bindings/secret/
+      readOnly: true
+      name: rhdg-secret-volume
+  volumes:
+    - name: rhdg-secret-volume
+      secret:
+        secretName: modresorts-cache-generated-secret
+  env:
+    - name: WLP_LOGGING_CONSOLE_FORMAT
+      value: "simple"

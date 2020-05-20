@@ -1,7 +1,7 @@
-# Assumes the Infinispan operator has been installed in your cluster
+# Assumes the Infinispan or Data Grid operator has been installed in your cluster
 apiVersion: infinispan.org/v1
 kind: Infinispan
 metadata:
-  name: infinispan-server
+  name: modresorts-cache
 spec:
   replicas: 1
