@@ -34,7 +34,7 @@
     }
 </script>
 
-<body onload="checkCookieSetting()">
+<body onload="checkCookieSetting(); fetchHostInfo();">
 <header class="header">
     <div class="header--left-container">
         <img class="header--logo" src="images/m-logo.svg" alt="">
@@ -103,7 +103,7 @@
         <button class="button--submit" onclick="callRESTAPI()" value="Submit">Find it</button>
     </nav>
     <div id="cookie-banner">
-        <p>This site uses cookies to enable certain features.</p>
+        <p>This site uses cookies to enable certain features</p>
         <div>
             <button onclick="updateCookieSetting(true)">Accept Cookies</button>
             <button onclick="updateCookieSetting(false)">Hide</button>
@@ -133,6 +133,10 @@
 </main>
             
 <footer class="footer">
+    <div id="serverInfo" class="hidden">
+        <p id="serverHost">external host: </p>
+        <p id="localHost">server host: </p>
+    </div>
     <svg class="footer--logo" width="126px" height="126px" viewBox="0 0 126 126" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
             <rect id="path-1" x="17" y="17" width="81" height="81"></rect>

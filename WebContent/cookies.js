@@ -37,32 +37,3 @@ async function showCookieBanner() {
     banner.classList.add('cookie-banner--fullsize');
     console.log(banner);
 }
-
-function sendRequest(method, url, requestBody) {
-    return new Promise((resolve, reject) => {
-        let req = new XMLHttpRequest();
-        req.open(method, url);
-        if (requestBody !== null) {
-            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        }
-        req.onload = () => {
-            if (req.status >= 200 && req.status < 300) {
-                resolve(req.response);
-            } else {
-                reject({
-                    status: req.status,
-                    statusText: req.statusText
-                });
-            }
-        };
-
-        req.onerror = () => {
-            reject({
-                status: req.status,
-                statusText: req.statusText
-            });
-        };
-
-        req.send(requestBody);
-    });
-}
